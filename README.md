@@ -1,3 +1,20 @@
+# Aviso àqueles que clonarem este código-fonte
+
+Este código foi escrito a partir do tutorial "React Kanban Board | React and Tailwind Css Task Management App", cujo endereço é: https://www.youtube.com/watch?v=yU7U5fpExxs
+
+Por se tratar de um excelente tutorial, eu resolvi seguir o passo-a-passo.
+
+--------------------
+
+# Warning to those who clone this source code
+
+This code was written from the tutorial "React Kanban Board | React and Tailwind Css Task Management App", whose address is: https://www.youtube.com/watch?v=yU7U5fpExxs
+
+Because it was an excellent tutorial, I decided to follow it step-by-step.
+
+
+--------------------
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
