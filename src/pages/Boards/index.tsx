@@ -4,16 +4,30 @@ import { AddOutline } from "react-ionicons";
 import { Columns } from "../../types";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { Board } from "../../data/board";
+import Task from "../../components/Task";
 
 const Boards = () => {
-
   const [columns, setColumns] = useState<Columns>(Board);
-  
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedColumn, setSelectedColumn] = useState("");
+
+  const openModal = (columnId: any) => {
+    setSelectedColumn(columnId);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const handleAddTask = (taskData: any) => {
+    const newBoard = { ...columns };
+    newBoard[selectedColumn].items.push(taskData);
+  };
+
   return (
     <>
-      <DragDropContext
-        onDragEnd={(result: any) => console.log(result)}
-      >
+      <DragDropContext onDragEnd={(result: any) => console.log(result)}>
         <div className="w-full flex items-start justify-between px-5 pb-8 md:gap-0 gap-10">
           {Object.entries(columns).map(([columnId, column]: any) => (
             <div className="w-full flex flex-col gap-0" key={columnId}>
@@ -33,16 +47,18 @@ const Boards = () => {
                         draggableId={task.id.toString()}
                         index={index}
                       >
-                        {(provided: any) => <></>}
+                        {(provided: any) => (
+                          <>
+                            <Task provided={provided} task={task} />
+                          </>
+                        )}
                       </Draggable>
                     ))}
                     {provided.placeholder}
                   </div>
                 )}
               </Droppable>
-              <div
-                className="flex cursor-pointer items-center justify-center gap-1 py-[10px] md:w-[90%] w-full opacity-90 bg-white rounded-lg shadow-sm text-[#555] font-medium text-[15px]"
-              >
+              <div className="flex cursor-pointer items-center justify-center gap-1 py-[10px] md:w-[90%] w-full opacity-90 bg-white rounded-lg shadow-sm text-[#555] font-medium text-[15px]">
                 <AddOutline color={"#555"} />
                 Add Task
               </div>
